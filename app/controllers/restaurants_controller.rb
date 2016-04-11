@@ -1,4 +1,6 @@
 class RestaurantsController < ApplicationController
+  before_filter :check_for_cancel, :only => [:create, :update]
+
   #Lists all Restaurants
   def index
     @restaurants = Restaurant.all
@@ -13,12 +15,24 @@ class RestaurantsController < ApplicationController
   def new
   end
 
+  # Checks for canceling a creation or update to a form
+  def check_for_cancel
+    if(params.key?("cancel"))
+      redirect_to restaurants_path
+    end
+  end
+
+  #TODO figure out how to ensure there is a name before submitting
   # Handles Saving a new restaurant. Redirects the page to the restaurant's show page
   def create
     @restaurant = Restaurant.new(restaurant_params)
 
     @restaurant.save
     redirect_to @restaurant
+  end
+
+  def clear_all
+    Restaurant.destroy.all
   end
 
   private

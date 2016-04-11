@@ -1,6 +1,7 @@
 <h1>Chewser</h1>
 <h2>Manage Restaurants</h2>
-<p> Here you can add, delete, and view your current pool of restaurants </p>
+<p><%= button_to 'Back', root_path, :method => "get"%></p>
+<p> Here you can add, delete, and view your current pool of restaurants. </p>
 <table>
   <tr>
     <th>Name</th>
@@ -8,8 +9,8 @@
 
   <% @restaurants.each do |restaurant| %>
       <tr>
-        <td><%= restaurant.name %></td>
+        <td><%= link_to restaurant.name, restaurant %></td>
       </tr>
   <% end %>
 </table>
-<p><a href="#">Add</a> <a href="#">Delete</a> <a href="#">Update</a></p>
+<p><%= link_to 'Add', new_restaurant_path %> <a href="#">Delete</a> <a href="#">Update</a> <%= link_to 'Back', root_path %></p>

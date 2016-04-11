@@ -1,7 +1,14 @@
 <h1>Chewser</h1>
+<p><%= button_to "Manage Restaurants", restaurants_path, :method => "get" %></p>
 <p>Welcome to Chewser! Let me tell you where you're going to eat, since you're too indecisive.
 </p>
-
-<p><%= button_to "Manage Restaurants", restaurants_path, :method => "get" %></p>
-
+<p>Filters:
+<table>
+  <tr>
+    <td>American</td><td><input type="checkbox" style="border:2px dotted #00f;display:block;background:#ff0000;"/></td>
+    <td>Alaskan</td><td><input type="checkbox" style="border:2px dotted #00f;display:block;background:#ff0000;"/></td>
+    <td>Italian</td><td><input type="checkbox" style="border:2px dotted #00f;display:block;background:#ff0000;"/></td>
+  </tr>
+</table>
+</p>
 <p><a class="btn-decide" href="">Decide!</a></p>

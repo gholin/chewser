@@ -7,6 +7,8 @@
     </p>
     <p>
       <%= f.submit %>
+      <%= f.submit 'clear', :type => 'reset' %>
+      <%= button_tag 'Cancel', :type => 'cancel', :name => 'cancel' %>
     </p>
 <% end %>
 <!--
