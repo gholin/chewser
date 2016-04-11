@@ -1,0 +1,30 @@
+<h1>Chewser</h1>
+<h2>New Restaurant</h2>
+<%= form_for :restaurant, url: restaurants_path do |f| %>
+    <p>
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>
+<!--
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      &nbsp;
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      Registration of this tool requires an Instructure employee, please use the button below to log in.
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <button class="btn btn-primary" id="start_auth" type="submit">Log In</button>
+    </div>
+  </div>
+</div>
+-->

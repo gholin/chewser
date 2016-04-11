@@ -1,0 +1,15 @@
+<h1>Chewser</h1>
+<h2>Manage Restaurants</h2>
+<p> Here you can add, delete, and view your current pool of restaurants </p>
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+  <% @restaurants.each do |restaurant| %>
+      <tr>
+        <td><%= restaurant.name %></td>
+      </tr>
+  <% end %>
+</table>
+<p><a href="#">Add</a> <a href="#">Delete</a> <a href="#">Update</a></p>
