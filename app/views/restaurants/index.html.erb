@@ -1,7 +1,11 @@
+<!-- TODO: Figure out how to clear a name field when you first edit a restaurant that already had a name -->
 <h1>Chewser</h1>
 <h2>Manage Restaurants</h2>
 <p><%= button_to 'Back', root_path, :method => "get"%></p>
-<p> Here you can add, delete, and view your current pool of restaurants. </p>
+<p> Here you can manage your current pool of restaurants. </p>
+
+<p><%= link_to 'Add', new_restaurant_path %> | <%= link_to 'Back', root_path %></p>
+
 <table>
   <tr>
     <th>Name</th>
@@ -9,8 +13,20 @@
 
   <% @restaurants.each do |restaurant| %>
       <tr>
-        <td><%= link_to restaurant.name, restaurant %></td>
+        <td><%= restaurant.name %></td>
+        <!--
+        <td>
+        <(get rid of this comment and for it to work again)%= link_to restaurant.name, restaurant %>
+         </td>
+        -->
+        <td><%= link_to 'Show', restaurant_path(restaurant) %></td>
+        <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+        <td><%= link_to 'Remove', restaurant_path(restaurant),
+                        method: :delete,
+                        data: { confirm: 'Are you sure you want to delete this restaurant?' } %></td>
+
       </tr>
   <% end %>
 </table>
-<p><%= link_to 'Add', new_restaurant_path %> <a href="#">Delete</a> <a href="#">Update</a> <%= link_to 'Back', root_path %></p>
+<p><%= link_to 'Add', new_restaurant_path %> | <%= link_to 'Back', root_path %></p>
+<p><%= link_to 'Clear List'%></p>

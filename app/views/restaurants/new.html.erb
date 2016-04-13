@@ -1,16 +1,10 @@
 <h1>Chewser</h1>
 <h2>New Restaurant</h2>
-<%= form_for :restaurant, url: restaurants_path do |f| %>
-    <p>
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
-    </p>
-    <p>
-      <%= f.submit %>
-      <%= f.submit 'clear', :type => 'reset' %>
-      <%= button_tag 'Cancel', :type => 'cancel', :name => 'cancel' %>
-    </p>
-<% end %>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', restaurants_path %>
+
 <!--
 <div class="container-fluid">
   <div class="row">

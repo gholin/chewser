@@ -1,0 +1,26 @@
+<!-- partial 'template' for my forms -->
+<%= form_for @restaurant do |f| %>
+    <% if @restaurant.errors.any? %>
+        <div id="error_explanation">
+          <h3>
+            <%= pluralize(@restaurant.errors.count, "error") %> prohibited
+            this restaurant from being saved:
+          </h3>
+          <ul>
+            <% @restaurant.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.submit %>
+      <%= f.submit 'clear', :type => 'reset' %>
+      <%= button_tag 'Cancel', :type => 'cancel', :name => 'cancel' %>
+    </p>
+<% end %>

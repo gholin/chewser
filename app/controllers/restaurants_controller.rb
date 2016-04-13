@@ -1,7 +1,9 @@
 class RestaurantsController < ApplicationController
   before_filter :check_for_cancel, :only => [:create, :update]
 
-  #Lists all Restaurants
+  http_basic_authenticate_with name: "me", password: "pw", except: [:index, :show]
+
+  #Lists all Restaurants on the Manage Restaurants page
   def index
     @restaurants = Restaurant.all
   end
@@ -11,14 +13,25 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
   end
 
-  # Displays the new restaurant form page
+  # Displays the new restaurant form page and initializes a default restaurant instance to avoid nil references
+  # to the variable (avoid errors specifically in the validation logic in adding new restaurants)
   def new
+    @restaurant = Restaurant.new
   end
 
-  # Checks for canceling a creation or update to a form
-  def check_for_cancel
-    if(params.key?("cancel"))
-      redirect_to restaurants_path
+  # Gives you the id for the restaurant you want to edit. Helps you get to that page.
+  def edit
+    @restaurant = Restaurant.find(params[:id])
+  end
+
+  # Updates restaurant
+  def update
+    @restaurant = Restaurant.find(params[:id])
+
+    if @restaurant.update(restaurant_params)
+      redirect_to @restaurant
+    else
+      render 'edit'
     end
   end
 
@@ -27,12 +40,30 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new(restaurant_params)
 
-    @restaurant.save
-    redirect_to @restaurant
+    if @restaurant.save
+      redirect_to @restaurant
+    else
+      render 'new'
+    end
   end
 
-  def clear_all
-    Restaurant.destroy.all
+  def destroy
+    @restaurant = Restaurant.find(params[:id])
+    @restaurant.destroy
+    redirect_to restaurants_path
+  end
+
+  #TODO implement an "are you sure" dialog, this is something rails has built in. Find it!
+  def destroy_all
+    Restaurant.destroy_all
+    redirect_to restaurants_path
+  end
+
+  # Checks for canceling a creation or update to a form
+  def check_for_cancel
+    if(params.key?("cancel"))
+      redirect_to restaurants_path
+    end
   end
 
   private

@@ -4,3 +4,8 @@
   <%= @restaurant.name %>
 </p>
 <p><%= button_to "Back to Manage", restaurants_path, :method => "get" %></p>
+<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+<%= link_to 'Remove', restaurant_path(@restaurant),
+            method: :delete,
+            data: { confirm: 'Are you sure you want to delete this restaurant?' } %> |
+<%= link_to 'Back', restaurants_path %>

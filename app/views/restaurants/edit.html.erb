@@ -1,0 +1,9 @@
+<h1>Chewser</h1>
+<h2> Edit Restaurant </h2>
+
+<%= render 'form' %>
+
+<%= link_to 'Remove', restaurant_path(@restaurant),
+                method: :delete,
+                data: { confirm: 'Are you sure you want to delete this restaurant?' } %> |
+<%= link_to 'Back', restaurants_path %>
