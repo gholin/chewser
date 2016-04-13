@@ -1,8 +1,6 @@
 class RestaurantsController < ApplicationController
   before_filter :check_for_cancel, :only => [:create, :update]
 
-  http_basic_authenticate_with name: "me", password: "pw", except: [:index, :show]
-
   #Lists all Restaurants on the Manage Restaurants page
   def index
     @restaurants = Restaurant.all
@@ -54,7 +52,7 @@ class RestaurantsController < ApplicationController
   end
 
   #TODO implement an "are you sure" dialog, this is something rails has built in. Find it!
-  def destroy_all
+  def nukem_all
     Restaurant.destroy_all
     redirect_to restaurants_path
   end

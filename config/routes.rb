@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :restaurants
 
+  get 'nukem_all' => 'restaurants#nukem_all'
+  get 'pick_for_me' => 'home#pick_for_me'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

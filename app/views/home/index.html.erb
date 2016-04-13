@@ -1,5 +1,5 @@
 <h1>Chewser</h1>
-<p><%= button_to "Manage Restaurants", restaurants_path, :method => "get" %></p>
+<p><%= button_to "Manage Restaurants", restaurants_path, :method => "get"%></p>
 <p>Welcome to Chewser! Let me tell you where you're going to eat, since you're too indecisive.
 </p>
 <p>Filters:
@@ -11,4 +11,6 @@
   </tr>
 </table>
 </p>
-<p><a class="btn-decide" href="">Decide!</a></p>
+<p><%= button_to 'Pick for me!', '/pick_for_me',
+               class: 'btn-decide', method: 'get' %></p>
+<p>&nbsp;</p>

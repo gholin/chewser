@@ -1,7 +1,6 @@
 <!-- TODO: Figure out how to clear a name field when you first edit a restaurant that already had a name -->
 <h1>Chewser</h1>
 <h2>Manage Restaurants</h2>
-<p><%= button_to 'Back', root_path, :method => "get"%></p>
 <p> Here you can manage your current pool of restaurants. </p>
 
 <p><%= link_to 'Add', new_restaurant_path %> | <%= link_to 'Back', root_path %></p>
@@ -29,4 +28,7 @@
   <% end %>
 </table>
 <p><%= link_to 'Add', new_restaurant_path %> | <%= link_to 'Back', root_path %></p>
-<p><%= link_to 'Clear List'%></p>
+<!-- resources create CRUD routes, but this is a custom method, and I needed to create a route in
+config/routes.rb for destroy all-->
+<p><%= link_to 'Clear List', '/nukem_all',
+                data: { confirm: 'Are you sure you want to delete EVERYTHING?' } %></p>
