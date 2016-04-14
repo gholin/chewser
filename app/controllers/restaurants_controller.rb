@@ -26,29 +26,47 @@ class RestaurantsController < ApplicationController
   def update
     @restaurant = Restaurant.find(params[:id])
 
-    if @restaurant.update(restaurant_params)
-      redirect_to @restaurant
-    else
-      render 'edit'
+    respond_to do |format|
+      if @restaurant.update(restaurant_params)
+        flash[:success] = 'Restaurant successfully updated!'
+        format.html { redirect_to restaurants_path}
+        format.json { render :show, status: :ok, location: restaurants_path }
+      else
+        flash[:danger] = "Error(s) updating restaurant: #{@restaurant.errors.full_messages}"
+        format.html { render :edit }
+        format.json { render json: @restaurants.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  #TODO figure out how to ensure there is a name before submitting
   # Handles Saving a new restaurant. Redirects the page to the restaurant's show page
   def create
     @restaurant = Restaurant.new(restaurant_params)
-
-    if @restaurant.save
-      redirect_to @restaurant
-    else
-      render 'new'
+    respond_to do |format|
+      if @restaurant.save
+        flash[:success] = 'Restaurant successfully created!'
+        format.html { redirect_to restaurants_path}
+        format.json { render :show, status: :created, location: restaurants_path }
+      else
+        flash[:danger] = "Error(s) creating restaurant: #{@restaurant.errors.full_messages}"
+        format.html { render :new }
+        format.json { render json: @restaurants.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
     @restaurant = Restaurant.find(params[:id])
-    @restaurant.destroy
-    redirect_to restaurants_path
+
+    if @restaurant.destroy
+      respond_to do |format|
+        flash[:success] = 'Restaurant successfully removed!'
+        format.html { redirect_to restaurants_path }
+      end
+    else
+      flash[:danger] = "Error(s) removing restaurant: #{@restaurant.errors.full_messages}"
+      format.html { redirect_to restaurants_path }
+    end
   end
 
   #TODO implement an "are you sure" dialog, this is something rails has built in. Find it!
@@ -71,6 +89,6 @@ class RestaurantsController < ApplicationController
   # this case, :name
   # Making it private further encapsulates and protects the method from outside influence
   def restaurant_params
-    params.require(:restaurant).permit(:name)
+    params.require(:restaurant).permit(:name, :distance, :cuisine, :cost)
   end
 end

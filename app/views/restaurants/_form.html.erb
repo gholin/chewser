@@ -15,12 +15,26 @@
     <% end %>
 
     <p>
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
+      <%= f.label :name%><br>
+      <%= f.text_field :name%>
+    </p>
+
+    <p>
+      <%= f.label :distance %><br>
+      <%= f.select :distance, [['0-2 miles'], ['2-5 miles'], ['5+ miles']] %>
+    </p>
+
+    <p>
+      <%= f.label :cuisine %><br>
+      <%= f.text_field :cuisine %>
     </p>
     <p>
-      <%= f.submit %>
-      <%= f.submit 'clear', :type => 'reset' %>
-      <%= button_tag 'Cancel', :type => 'cancel', :name => 'cancel' %>
+      <%= f.label :cost %><br>
+      <%= f.select :cost, [['$'], ['$$'], ['$$$']] %>
+    </p>
+    <p>
+      <%= f.submit :class => 'btn btn-primary' %>
+      <%= f.submit 'clear', :type => 'reset', :class => 'btn btn-default' %>
+      <%= button_tag 'Cancel', :type => 'cancel', :name => 'cancel', :class => 'btn btn-default' %>
     </p>
 <% end %>

@@ -5,51 +5,24 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <style>
-      h1 {
-          text-align: center;
-          color: #333333;
-          font-family: Georgia, Serif;
-          font-size: 250%;
-      }
-      h2 {
-          text-align: center;
-          color: #333333;
-          font-family: Georgia, Serif;
-      }
-
-      p {
-          text-align: center;
-          color: #333333;
-          font-family: Verdana, Geneva, sans-serif;
-      }
-      .btn-decide {
-          display: inline-block;
-          padding: 10px 30px;
-          border: 1px solid #006699;
-          border-radius: 8px;
-          background-color: #0097DF;
-          color: white;
-          text-decoration: none;
-          font-family: Arial, Helvetica, sans-serif;
-          font-size: 18px;
-      }
-      .btn-decide:hover {
-          background-color: #336699
-      }
-      restaurant {
-          text-align: center;
-          display: inline-block;
-          padding: 10px 30px;
-          color:blue;
-          font-family: Arial, Helvetica, sans-serif;
-          font-size: 18px;
-      }
-  </style>
 </head>
 <body>
+  <%= render 'shared/navigation' %>
 
-<%= yield %>
+  <div id="main-container" class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <% flash.each do |name, msg| -%>
+            <%= content_tag :div, msg, class: "alert alert-#{name}" %>
+        <% end -%>
+      </div>
+    </div>
 
+    <%= yield %>
+
+    <div class="footer">
+      <p>&copy; Steven Shepherd 2016</p>
+    </div>
+  </div> <!-- /container -->
 </body>
 </html>

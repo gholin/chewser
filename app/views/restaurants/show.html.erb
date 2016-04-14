@@ -1,9 +1,10 @@
+<div class="jumbotron">
 <h1>Chewser</h1>
 <p>
   <strong>Restaurant Name:</strong>
   <%= @restaurant.name %>
 </p>
-<p><%= button_to "Back to Manage", restaurants_path, :method => "get" %></p>
+</div>
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
 <%= link_to 'Remove', restaurant_path(@restaurant),
             method: :delete,

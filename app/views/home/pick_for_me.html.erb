@@ -1,4 +1,17 @@
-<h1>Chewser</h1>
-<h2>You will be dining with the fine people at:</h2>
-<p>&nbsp;</p>
-<restaurant><%= @restaurant.name %></restaurant>
+<div class="jumbotron">
+  <h1>Chewser</h1>
+  <p class="lead">You will be dining with the fine people at:</p>
+  <hr>
+  <div>
+    <!--TODO I gotta redo this logic -->
+    <% if picked(@picked && @restaurant) %>
+        <p><%= @restaurant.name %></p>
+    <% else %>
+     <p>You have not picked anything yet!</p>
+    <% end %>
+  </div>
+  <hr>
+  <%= link_to pick_for_me_path, class: 'btn btn-success' do %>
+      <i class="glyphicon glyphicon-cutlery"></i> Pick again!
+  <% end %>
+</div>

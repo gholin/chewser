@@ -1,16 +1,23 @@
-<h1>Chewser</h1>
-<p><%= button_to "Manage Restaurants", restaurants_path, :method => "get"%></p>
-<p>Welcome to Chewser! Let me tell you where you're going to eat, since you're too indecisive.
-</p>
-<p>Filters:
-<table>
-  <tr>
-    <td>American</td><td><input type="checkbox" style="border:2px dotted #00f;display:block;background:#ff0000;"/></td>
-    <td>Alaskan</td><td><input type="checkbox" style="border:2px dotted #00f;display:block;background:#ff0000;"/></td>
-    <td>Italian</td><td><input type="checkbox" style="border:2px dotted #00f;display:block;background:#ff0000;"/></td>
-  </tr>
-</table>
-</p>
-<p><%= button_to 'Pick for me!', '/pick_for_me',
-               class: 'btn-decide', method: 'get' %></p>
-<p>&nbsp;</p>
+<ul class="nav nav-pills" role="tablist">
+  <li class="active"><%= link_to 'Home', root_path %></li>
+  <li><%= link_to 'Manage', restaurants_path %></li>
+</ul>
+
+<div class="jumbotron">
+  <h1>Chewser</h1>
+  <p class="lead">Welcome to Chewser! Let me tell you where you're going to eat, since you're too indecisive.</p>
+  <hr>
+  <p>Filters:
+  <div>
+    <%= render 'form' %>
+  </div>
+  <hr>
+  </p>
+
+  <%= link_to pick_for_me_path, class: 'btn-lg btn btn-success' do %>
+      <i class="glyphicon glyphicon-cutlery"></i> Pick for me!
+  <% end %>
+</div>
+
+
+

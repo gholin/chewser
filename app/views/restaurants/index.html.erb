@@ -1,34 +1,44 @@
 <!-- TODO: Figure out how to clear a name field when you first edit a restaurant that already had a name -->
-<h1>Chewser</h1>
-<h2>Manage Restaurants</h2>
-<p> Here you can manage your current pool of restaurants. </p>
+<ul class="nav nav-pills" role="tablist">
+  <li><%= link_to 'Home', root_path %></li>
+  <li class="active"><%= link_to 'Manage', restaurants_path %></li>
+</ul>
 
-<p><%= link_to 'Add', new_restaurant_path %> | <%= link_to 'Back', root_path %></p>
+<div class="jumbotron">
+  <h1>Chewser</h1>
+  <h2>Manage Restaurants</h2>
+  <p class="lead">Here you can manage your current pool of restaurants. </p>
 
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-
-  <% @restaurants.each do |restaurant| %>
+  <table class="table-condensed">
+    <tr>
+      <th>Restaurant</th>
+      <th>Distance</th>
+      <th>Cuisine</th>
+      <th>Cost</th>
+    </tr>
+    <% @restaurants.each do |restaurant| %>
       <tr>
-        <td><%= restaurant.name %></td>
-        <!--
-        <td>
-        <(get rid of this comment and for it to work again)%= link_to restaurant.name, restaurant %>
-         </td>
-        -->
-        <td><%= link_to 'Show', restaurant_path(restaurant) %></td>
-        <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+        <td><%= restaurant.name%></td>
+        <td><%= restaurant.distance%></td>
+        <td><%= restaurant.cuisine%></td>
+        <td><%= restaurant.cost%></td>
+        <td><%= link_to 'Edit', edit_restaurant_path(restaurant),class:'btn btn-info btn-xs'%></td>
         <td><%= link_to 'Remove', restaurant_path(restaurant),
                         method: :delete,
-                        data: { confirm: 'Are you sure you want to delete this restaurant?' } %></td>
-
+                        data: { confirm: 'Are you sure you want to delete this restaurant?' },
+                        class: 'btn btn-danger btn-xs'%></td>
       </tr>
-  <% end %>
-</table>
-<p><%= link_to 'Add', new_restaurant_path %> | <%= link_to 'Back', root_path %></p>
+    <% end %>
+  </table>
+  <hr>
 <!-- resources create CRUD routes, but this is a custom method, and I needed to create a route in
 config/routes.rb for destroy all-->
-<p><%= link_to 'Clear List', '/nukem_all',
-                data: { confirm: 'Are you sure you want to delete EVERYTHING?' } %></p>
+  <p>
+  <%= link_to new_restaurant_path, class: 'btn btn-success' do %>
+      <i class="glyphicon glyphicon-plus"></i> Add
+  <% end %>
+
+  <%= link_to 'Clear List', nukem_all_path,
+                data: { confirm: 'Are you sure you want to delete EVERYTHING?' },
+                class: 'btn btn-danger'%></p>
+</div>
