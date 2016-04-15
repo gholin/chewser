@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
   before_filter :check_for_cancel, :only => [:create, :update]
-
+  before_filter :cuisine_options
   #Lists all Restaurants on the Manage Restaurants page
   def index
     @restaurants = Restaurant.all
@@ -82,6 +82,10 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def add_cuisine_types(posted_type)
+    @cuisine_types << posted_type
+  end
+
   private
 
   # Strong Params. We could just grab them all with params[:restaurant] but that would
@@ -90,5 +94,9 @@ class RestaurantsController < ApplicationController
   # Making it private further encapsulates and protects the method from outside influence
   def restaurant_params
     params.require(:restaurant).permit(:name, :distance, :cuisine, :cost)
+  end
+
+  def cuisine_options
+    @cuisine_types = ["Mexican","Italian","American","Japanese","Chinese"]
   end
 end

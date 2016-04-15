@@ -1,12 +1,30 @@
 <div class="jumbotron">
-<h1>Chewser</h1>
-<p>
-  <strong>Restaurant Name:</strong>
-  <%= @restaurant.name %>
-</p>
-</div>
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Remove', restaurant_path(@restaurant),
+  <h1 class="text-center">Chewser</h1>
+  <hr>
+  <p class="text-center">
+    <strong>Restaurant:</strong>
+    <%= @restaurant.name %>
+  </p>
+  <p class="text-center">
+    <strong>Distance:</strong>
+    <%= @restaurant.distance%>
+  </p>
+  <p class="text-center">
+    <strong>Cuisine:</strong>
+    <%= @restaurant.cuisine%>
+  </p>
+  <p class="text-center">
+    <strong>Cost:</strong>
+    <%= @restaurant.cost%>
+  </p>
+  <div class="text-center">
+    <%= link_to 'Edit', edit_restaurant_path(@restaurant),class:'btn btn-info'%>
+    <%=link_to 'Remove', restaurant_path(@restaurant),
             method: :delete,
-            data: { confirm: 'Are you sure you want to delete this restaurant?' } %> |
-<%= link_to 'Back', restaurants_path %>
+            data: { confirm: 'Are you sure you want to delete this restaurant?' },
+            class: 'btn btn-danger'%>
+  </div>
+</div>
+
+
+

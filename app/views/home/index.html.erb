@@ -1,21 +1,23 @@
-<ul class="nav nav-pills" role="tablist">
-  <li class="active"><%= link_to 'Home', root_path %></li>
-  <li><%= link_to 'Manage', restaurants_path %></li>
-</ul>
-
 <div class="jumbotron">
   <h1>Chewser</h1>
   <p class="lead">Welcome to Chewser! Let me tell you where you're going to eat, since you're too indecisive.</p>
   <hr>
-  <p>Filters:
-  <div>
+  <div class="text-center">
+    Filters:
     <%= render 'form' %>
   </div>
   <hr>
-  </p>
-
-  <%= link_to pick_for_me_path, class: 'btn-lg btn btn-success' do %>
-      <i class="glyphicon glyphicon-cutlery"></i> Pick for me!
+  <% if !@msg.empty?%>
+  <div class="text-center">
+    <p class="lead">You will be dining with the fine people at:</p>
+    <div>
+      <p><%= @msg %></p>
+    </div>
+  </div>
+  <% else %>
+      <div class="text-center">
+          <p class="lead"><%= @error_msg %></p>
+      </div>
   <% end %>
 </div>
 
